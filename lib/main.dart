@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gpt/screens/home_screen.dart';
-import 'package:gpt/screens/level_selector_screen.dart';
-import 'package:gpt/screens/question_screen.dart';
 
 void main() {
   runApp(SATPrepApp());
@@ -16,7 +14,7 @@ class SATPrepApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LevelSelectorScreen(),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false, // Hides the debug banner
     );
   }

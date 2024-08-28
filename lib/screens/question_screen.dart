@@ -5,6 +5,12 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:gpt/screens/result_screen.dart';
 
+
+class Jsonpath {
+  static const String beginner = "beginner";
+  static const String intermediate = "intermediate";
+  static const String advanced = "advanced";
+}
 class Question {
   final String question;
   final List<String> options;
@@ -26,6 +32,10 @@ class Question {
 }
 
 class QuestionsScreen extends StatefulWidget {
+  String jsonFilePath;
+  final String level;
+
+  QuestionsScreen({required this.jsonFilePath, required this.level});
   @override
   _QuestionsScreen createState() => _QuestionsScreen();
 }
@@ -39,6 +49,7 @@ class _QuestionsScreen extends State<QuestionsScreen> {
 
   int correctAnswers = 0;
   int incorrectAnswers = 0;
+  
 
   @override
   void initState() {
@@ -50,9 +61,10 @@ class _QuestionsScreen extends State<QuestionsScreen> {
       startTimer();
     });
   }
+  
 
   Future<List<Question>> loadQuestions() async {
-    final jsonString = await rootBundle.loadString('assets/questions.json');
+    final jsonString = await rootBundle.loadString('assets/data/${widget.jsonFilePath}.json');
     final List<dynamic> jsonResponse = json.decode(jsonString);
     return jsonResponse.map((json) => Question.fromJson(json)).toList();
   }
@@ -168,27 +180,28 @@ class _QuestionsScreen extends State<QuestionsScreen> {
       );
     }
 
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
-        title: Text("Quiz"),
+        title: const Text('Prep Questions'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildTimer(),
-            SizedBox(height: 20),
-            _buildProgressBar(),
-            SizedBox(height: 20),
-            _buildQuestionText(),
-            SizedBox(height: 40),
-            ..._buildOptions(),
-            SizedBox(height: 40),
-            _buildNavigationButtons(),
-          ],
-        ),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildTimer(),
+              SizedBox(height: 20),
+              _buildProgressBar(),
+              SizedBox(height: 20),
+              _buildQuestionText(),
+              SizedBox(height: 40),
+              ..._buildOptions(),
+              SizedBox(height: 40),
+              _buildNavigationButtons(),
+            ],
+          ),
+        
       ),
     );
   }

@@ -1,0 +1,103 @@
+[
+    {
+      "question": "If x + 5 = 12, what is x?",
+      "options": ["5", "6", "7", "8"],
+      "answer": "7"
+    },
+    {
+      "question": "What is the value of 3x when x = 4?",
+      "options": ["9", "10", "11", "12"],
+      "answer": "12"
+    },
+    {
+      "question": "If y = 2x and x = 3, what is y?",
+      "options": ["5", "6", "7", "8"],
+      "answer": "6"
+    },
+    {
+      "question": "What is the slope of the line y = 2x + 3?",
+      "options": ["1", "2", "3", "4"],
+      "answer": "2"
+    },
+    {
+      "question": "Solve for x: 3x - 4 = 8.",
+      "options": ["3", "4", "5", "6"],
+      "answer": "4"
+    },
+    {
+      "question": "What is the area of a triangle with base 5 and height 8?",
+      "options": ["15", "20", "25", "30"],
+      "answer": "20"
+    },
+    {
+      "question": "Solve for y: 2y + 3 = 11.",
+      "options": ["2", "3", "4", "5"],
+      "answer": "4"
+    },
+    {
+      "question": "What is the value of 2^3?",
+      "options": ["6", "7", "8", "9"],
+      "answer": "8"
+    },
+    {
+      "question": "Solve for x: 4x - 3 = 13.",
+      "options": ["3", "4", "5", "6"],
+      "answer": "4"
+    },
+    {
+      "question": "What is the circumference of a circle with radius 3? (Use π = 3.14)",
+      "options": ["18.84", "19.84", "20.84", "21.84"],
+      "answer": "18.84"
+    },
+    {
+      "question": "What is the volume of a cube with side length 4?",
+      "options": ["32", "48", "64", "80"],
+      "answer": "64"
+    },
+    {
+      "question": "Solve for x: x^2 = 16.",
+      "options": ["2", "3", "4", "5"],
+      "answer": "4"
+    },
+    {
+      "question": "What is the value of 2x + 3y when x = 2 and y = 3?",
+      "options": ["10", "11", "12", "13"],
+      "answer": "13"
+    },
+    {
+      "question": "What is the slope of the line passing through points (2, 3) and (4, 7)?",
+      "options": ["1", "2", "3", "4"],
+      "answer": "2"
+    },
+    {
+      "question": "Solve for x: 5x - 2 = 3x + 6.",
+      "options": ["2", "3", "4", "5"],
+      "answer": "4"
+    },
+    {
+      "question": "What is the value of (x + 2)^2 when x = 3?",
+      "options": ["15", "20", "25", "30"],
+      "answer": "25"
+    },
+    {
+      "question": "What is the equation of a line with a slope of 3 and y-intercept 4?",
+      "options": ["y = 3x + 4", "y = 4x + 3", "y = 3x - 4", "y = 4x - 3"],
+      "answer": "y = 3x + 4"
+    },
+    {
+      "question": "Solve for y: 3y - 5 = 10.",
+      "options": ["3", "4", "5", "6"],
+      "answer": "5"
+    },
+    {
+      "question": "What is the product of the roots of the equation x^2 - 5x + 6 = 0?",
+      "options": ["1", "2", "3", "4"],
+      "answer": "3"
+    },
+    {
+      "question": "What is the area of a circle with diameter 10? (Use π = 3.14)",
+      "options": ["50", "78.5", "100", "157"],
+      "answer": "78.5"
+    }
+  ]
+  

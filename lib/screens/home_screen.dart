@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../components/components.dart'; // Import your shared components
+import 'package:gpt/screens/level_selector_screen.dart';
+import 'package:gpt/screens/question_screen.dart';
+import '../components/components.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -23,9 +25,9 @@ class HomeScreen extends StatelessWidget {
           children: [
             WelcomeBanner(userName: '[User Name]'),
             SizedBox(height: 20),
-            _buildQuickStartSection(context),
-            SizedBox(height: 20),
             ProgressOverview(progressValue: 0.7),
+            SizedBox(height: 20),
+            _buildQuickStartSection(context),
             SizedBox(height: 20),
             _buildPracticeHistory(context),
             SizedBox(height: 20),
@@ -42,7 +44,15 @@ class HomeScreen extends StatelessWidget {
         Expanded(
           child: ElevatedButton(
             onPressed: () {
-              // Navigate to Level Selector Screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => QuestionsScreen(
+                    level: 'beginner',
+                    jsonFilePath: Jsonpath.beginner,
+                  ),
+                ),
+              );
             },
             child: Text('Start Quiz'),
           ),
@@ -51,7 +61,12 @@ class HomeScreen extends StatelessWidget {
         Expanded(
           child: ElevatedButton(
             onPressed: () {
-              // Navigate to Continue Last Quiz Screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LevelSelectorScreen(),
+                ),
+              );
             },
             child: Text('Continue Last Quiz'),
           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:gpt/screens/question_screen.dart';
+
 class WelcomeBanner extends StatelessWidget {
   final String userName;
 
@@ -76,7 +78,12 @@ class DailyChallengeCard extends StatelessWidget {
         subtitle: Text('Complete today’s challenge to boost your skills!'),
         trailing: Icon(Icons.arrow_forward),
         onTap: () {
-          // Navigate to Daily Challenge Screen
+          // Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => 
+          //       ),
+          //     );
         },
       ),
     );

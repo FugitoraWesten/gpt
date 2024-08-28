@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gpt/screens/question_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gpt/screens/level_selector_screen.dart';
 
 class ResultsScreen extends StatelessWidget {
   final int totalQuestions;
@@ -14,6 +15,9 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Save the current score when the result screen is displayed
+    _saveScore();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Quiz Results"),
@@ -38,7 +42,7 @@ class ResultsScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => QuestionsScreen()),
+                    MaterialPageRoute(builder: (context) => LevelSelectorScreen()),
                   );
                 },
                 child: Text("Restart Quiz"),
@@ -71,5 +75,22 @@ class ResultsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  // Save the score to SharedPreferences
+  Future<void> _saveScore() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Retrieve existing score history
+    List<String>? scoreHistory = prefs.getStringList('scoreHistory') ?? [];
+
+    // Create a new score entry
+    String newScore = 'Total: $totalQuestions, Correct: $correctAnswers, Incorrect: $incorrectAnswers';
+
+    // Add the new score to the history
+    scoreHistory.add(newScore);
+
+    // Save the updated score history back to SharedPreferences
+    await prefs.setStringList('scoreHistory', scoreHistory);
   }
 }
