@@ -1,4 +1,4 @@
-# gpt
+# SAT prep
 
 A new Flutter project.
 
