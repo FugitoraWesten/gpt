@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:gpt/screens/result_screen.dart';
-import 'package:gpt/data/data_provider.dart';
 
 class Question {
   final String question;
