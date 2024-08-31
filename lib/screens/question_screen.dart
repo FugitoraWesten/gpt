@@ -5,12 +5,6 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:gpt/screens/result_screen.dart';
 
-
-class Jsonpath {
-  static const String beginner = "beginner";
-  static const String intermediate = "intermediate";
-  static const String advanced = "advanced";
-}
 class Question {
   final String question;
   final List<String> options;
@@ -35,7 +29,7 @@ class QuestionsScreen extends StatefulWidget {
   String jsonFilePath;
   final String level;
 
-  QuestionsScreen({required this.jsonFilePath, required this.level});
+  QuestionsScreen({super.key, required this.jsonFilePath, required this.level});
   @override
   _QuestionsScreen createState() => _QuestionsScreen();
 }
@@ -44,12 +38,11 @@ class _QuestionsScreen extends State<QuestionsScreen> {
   List<Question> questions = [];
   int currentQuestionIndex = 0;
   int selectedOptionIndex = -1;
-  int totalDurationInSeconds = 3660; // Example time
+  int totalDurationInSeconds = 6; // Example time
   Timer? timer;
 
   int correctAnswers = 0;
   int incorrectAnswers = 0;
-  
 
   @override
   void initState() {
@@ -182,7 +175,7 @@ class _QuestionsScreen extends State<QuestionsScreen> {
 
     return  Scaffold(
       appBar: AppBar(
-        title: const Text('Prep Questions'),
+        title: const Text('SAT prep Questions'),
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),

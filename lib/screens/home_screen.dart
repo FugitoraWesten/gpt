@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:gpt/screens/level_selector_screen.dart';
+import 'package:gpt/screens/progress_screen.dart';
 import 'package:gpt/screens/question_screen.dart';
 import '../components/components.dart';
+import '../model/read_file.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Map<String, dynamic>> _recentQuizzes = [];
+  final FileReader _fileReader = FileReader();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRecentQuizzes();
+  }
+
+  Future<void> _loadRecentQuizzes() async {
+    _recentQuizzes = await _fileReader.readJsonFromFile('recent_quizzes');
+    setState(() {}); // Refresh the UI with the loaded data
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +50,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 20),
             _buildQuickStartSection(context),
             SizedBox(height: 20),
-            _buildPracticeHistory(context),
+            _buildRecentQuizzes(context),
             SizedBox(height: 20),
             DailyChallengeCard(),
           ],
@@ -75,7 +96,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPracticeHistory(BuildContext context) {
+  Widget _buildRecentQuizzes(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -84,20 +105,32 @@ class HomeScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headline6,
         ),
         SizedBox(height: 8),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount: 3,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text('Quiz ${index + 1}'),
-              subtitle: Text('Date: 2024-08-27, Score: 80%'),
-              onTap: () {
-                // Navigate to Progress Detail Screen
-              },
-            );
-          },
-        ),
+        _recentQuizzes.isNotEmpty
+            ? ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: _recentQuizzes.length,
+                itemBuilder: (context, index) {
+                  final quiz = _recentQuizzes[index];
+                  return ListTile(
+                    title: Text('Quiz ${index + 1}'),
+                    subtitle: Text('Date: ${quiz['date']}, Score: ${quiz['score']}'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProgressScreen(
+                            totalQuestions: quiz['totalQuestions'],
+                            correctAnswers: quiz['correctAnswers'],
+                            incorrectAnswers: quiz['incorrectAnswers'],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              )
+            : Center(child: Text('No recent quizzes available')),
       ],
     );
   }

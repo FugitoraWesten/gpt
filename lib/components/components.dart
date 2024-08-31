@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gpt/screens/question_screen.dart';
+import 'package:gpt/screens/progress_screen.dart';
 
 class WelcomeBanner extends StatelessWidget {
   final String userName;
@@ -57,7 +58,16 @@ class ProgressOverview extends StatelessWidget {
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Navigate to Progress Summary Screen
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProgressScreen(
+                  totalQuestions: 0,
+                  correctAnswers: 0,
+                  incorrectAnswers: 0,
+                ),
+                ),
+              );
               },
               child: Text('View Details'),
             ),
